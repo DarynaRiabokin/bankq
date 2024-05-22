@@ -30,7 +30,8 @@ export const DepartmentTabsBlock: React.FC<PropsType> = ({
       bg={useColorModeValue("white", "gray.800")}
       color={useColorModeValue("gray.600", "white")}
       minH={"60px"}
-			mb="24px"
+      mb={{ base: "10px", lg: "24px" }}
+      px={{ base: "10px", lg: 0 }}
       maxW="1200px"
       ml="auto"
       mr="auto"
@@ -43,14 +44,27 @@ export const DepartmentTabsBlock: React.FC<PropsType> = ({
         onChange={handleChange}
         variant="soft-rounded"
         colorScheme="purple"
+        overflowY="auto"
+        sx={{
+          "&::-webkit-scrollbar": {
+            backgroundColor: "transparent",
+          },
+        }}
       >
-        <TabList flexWrap="wrap" justifyContent="center">
-          <Tab>Всі</Tab>
+        <TabList
+          flexWrap={{ base: "nowrap", lg: "wrap" }}
+          justifyContent={{ lg: "center" }}
+        >
+          <Tab whiteSpace="nowrap">Всі</Tab>
           {departments &&
             departmentsList.map((id) => {
               const department = departments[id];
 
-              return <Tab key={id}>{department.name}</Tab>;
+              return (
+                <Tab whiteSpace="nowrap" key={id}>
+                  {department.name}
+                </Tab>
+              );
             })}
         </TabList>
       </Tabs>

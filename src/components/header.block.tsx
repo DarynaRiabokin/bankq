@@ -4,7 +4,6 @@ import {
   Flex,
   Heading,
   IconButton,
-  useBreakpointValue,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useCallback, useRef } from "react";
@@ -33,14 +32,13 @@ export const HeaderBlock: React.FC = () => {
       ml="auto"
       mr="auto"
       w="100%"
-      px="2"
+      px="4"
       py={{ base: 2 }}
       align={"center"}
     >
-      <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
+      <Flex flex={{ base: 1 }}>
         <Link to="/">
           <Heading
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
             size="lg"
             color={useColorModeValue("gray.800", "white")}
           >
@@ -51,9 +49,8 @@ export const HeaderBlock: React.FC = () => {
       {isAuthorized ? (
         <IconButton
           aria-label="Вийти"
-          variant="ghost"
+          variant="solid"
           mr="10px"
-          colorScheme="red"
           onClick={handleLogOut}
         >
           <NotAllowedIcon />

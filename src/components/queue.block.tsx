@@ -39,18 +39,29 @@ export const QueueBlock: React.FC<PropsType> = ({ selectedDepartmentId }) => {
       await deleteQueue(queueId);
       setLoading.off();
     },
-    [deleteQueue, isAuthorized]
+    [deleteQueue, isAuthorized, setLoading]
   );
 
   return (
     <Box w="100%" minH="100%" bg="gray.50">
-      <Box minH="100%" maxW="1200px" marginInline="auto" p="8">
+      <Box minH="100%" maxW="1200px" marginInline="auto" p={{ base: 0, lg: 8 }}>
         {isQueuesLoading || isWindowsLoading ? (
           <Flex justify="center" align="center" width="100%" py="200px">
             <Spinner />
           </Flex>
         ) : (
-          <Flex w="100%" gap="8" justify="space-between">
+          <Flex
+            w="100%"
+            gap={{ base: '10px', lg: '8' }}
+            justify="space-between"
+            overflowX="auto"
+            p={{ base: '10px', lg: 0 }}
+            sx={{
+              '&::-webkit-scrollbar': {
+                backgroundColor: 'transparent'
+              }
+            }}
+          >
             {windows &&
               windowsList.map((windowId) => {
                 const window = windows[windowId];
@@ -62,7 +73,12 @@ export const QueueBlock: React.FC<PropsType> = ({ selectedDepartmentId }) => {
                   return null;
 
                 return (
-                  <Stack gap="24px" w="100%" key={window.id}>
+                  <Stack
+                    gap={{ base: '10px', lg: '24px' }}
+                    w="100%"
+                    minW={{ base: "200px", lg: "auto" }}
+                    key={window.id}
+                  >
                     <Flex
                       bg="white"
                       w="100%"
@@ -71,8 +87,8 @@ export const QueueBlock: React.FC<PropsType> = ({ selectedDepartmentId }) => {
                       justifyContent="center"
                       p="4"
                       zIndex={10}
-                      position="sticky"
-                      top="24px"
+                      position={{ base: 'relative', lg: 'sticky' }}
+                      top={{ base: 0, lg: '24px' }}
                     >
                       <Heading size="md">{window.name}</Heading>
                     </Flex>
@@ -96,8 +112,8 @@ export const QueueBlock: React.FC<PropsType> = ({ selectedDepartmentId }) => {
                             </Text>
                             {isAuthorized ? (
                               <IconButton
-                                mt='10px'
-                                width='100%'
+                                mt="10px"
+                                width="100%"
                                 aria-label="Закрити"
                                 onClick={() => handleDelete(queueId)}
                                 isLoading={isLoading}
