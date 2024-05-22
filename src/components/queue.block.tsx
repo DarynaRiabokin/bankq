@@ -88,7 +88,7 @@ export const QueueBlock: React.FC<PropsType> = ({ selectedDepartmentId }) => {
                       p="4"
                       zIndex={10}
                       position={{ base: 'relative', lg: 'sticky' }}
-                      top={{ base: 0, lg: '24px' }}
+                      top={0}
                     >
                       <Heading size="md">{window.name}</Heading>
                     </Flex>
